@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSE Example</title>
+</head>
+<body style="text-align: center;">
+    <h2>Welcome to Server sent events example</h2>
+    <h1>Hi 👋 Server is up!</h1>
+    <code>Please open dev console to check messages recieved from SSE</code>
+
+    <script>
+        (function() {
+            console.log("Connecting to sse....");
+            const sse = new EventSource("/sse");
+
+            sse.onopen = function() {
+                console.log("connected to sse :)");
+            }
+
+            sse.onmessage = function(msg) {
+                console.log("msg:", msg.data);
+            }
+
+            sse.onerror = function(err) {
+                console.error("Error type:", err.type);
+            }
+        })()
+    </script>
+</body>
+</html>
